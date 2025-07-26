@@ -31,7 +31,7 @@ class OtherButtonsLayout(GridLayout):
         
         self.cols = 6
         self.button_texts = ["OPTN", "CALC", "txt", "txt", "S", "x",
-                             "fraction", "sq root", "sq", "indices", "log", "ln"
+                             "fraction", "sq root", "sq", "indices", "log", "ln",
                              "(-)", "'", "x-1", "sin", "cos", "tan",
                              "STO", "ENG", "(", ")", "S->D", "M+"]
         
