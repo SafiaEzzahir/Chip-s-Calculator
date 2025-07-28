@@ -18,7 +18,10 @@ class ShiftButton(BoxLayout):
         self.add_widget(self.button)
 
     def pressed(self, instance):
-        self.shift = True
+        if self.shift:
+            self.shift = False
+        else:
+            self.shift = True
         self.last_pressed = 0
 
     def falseformat(self):
@@ -52,7 +55,10 @@ class AlphaButton(BoxLayout):
         self.add_widget(self.button)
 
     def pressed(self, instance):
-        self.alpha = True
+        if self.alpha:
+            self.alpha = False
+        else:
+            self.alpha = True
         self.last_pressed = 0
 
     def falseformat(self):
@@ -83,15 +89,14 @@ class ShiftAndAlphaManager():
             if self.shiftlayout.last_pressed > self.alphalayout.last_pressed:
                 self.shift = False
                 self.alpha = True
+                self.shiftlayout.shift = False
             else:
                 self.shift = True
                 self.alpha = False
+                self.alphalayout.alpha = False
         else:
             self.shift = self.shiftlayout.shift
             self.alpha = self.alphalayout.alpha
-
-        print("shift: " + str(self.shift))
-        print("alpha: " + str(self.alpha))
 
         self.shiftlayout.update(self.shift)
         self.alphalayout.update(self.alpha)
