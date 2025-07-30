@@ -6,6 +6,10 @@ from buttonlayouts import NumberLayout, OtherButtonsLayout, MainButtonsLayout
 from kivy.metrics import dp
 from kivy.core.window import Window
 from kivy.properties import Clock
+from popup import PreferencesPopup
+import os
+
+kv_path = os.path.join(os.path.dirname(__file__), 'calculator.kv')
 
 class MainLayout(BoxLayout):
     def __init__(self, **kwargs):
@@ -15,6 +19,8 @@ class MainLayout(BoxLayout):
         self.spacing =dp(8)
 
         Clock.schedule_interval(self.update, 1.0/60.0)
+
+        self.popup = PreferencesPopup()
 
         self.mainbuttonslayout = MainButtonsLayout(size_hint=(1, 0.15))
         self.otherbuttonslayout = OtherButtonsLayout(size_hint=(1, 0.27))
@@ -26,6 +32,8 @@ class MainLayout(BoxLayout):
         self.add_widget(self.numberlayout)
 
     def update(self, dt):
+        self.popup.update()
+        
         self.mainbuttonslayout.update()
         self.otherbuttonslayout.update()
         self.numberlayout.update()
@@ -33,7 +41,7 @@ class MainLayout(BoxLayout):
 class ChipsCalculatorApp(App):
     def build(self):
         Window.clearcolor = (1, 1, 1, 1)
-        return Builder.load_file("calculator.kv")
+        return Builder.load_file(kv_path)
     
 if __name__ == '__main__':
     ChipsCalculatorApp().run()
