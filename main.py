@@ -6,7 +6,6 @@ from buttonlayouts import NumberLayout, OtherButtonsLayout, MainButtonsLayout
 from kivy.metrics import dp
 from kivy.core.window import Window
 from kivy.properties import Clock
-from popup import PreferencesPopup
 import os
 
 kv_path = os.path.join(os.path.dirname(__file__), 'calculator.kv')
@@ -20,8 +19,6 @@ class MainLayout(BoxLayout):
 
         Clock.schedule_interval(self.update, 1.0/60.0)
 
-        self.popup = PreferencesPopup()
-
         self.mainbuttonslayout = MainButtonsLayout(size_hint=(1, 0.15))
         self.otherbuttonslayout = OtherButtonsLayout(size_hint=(1, 0.27))
         self.numberlayout = NumberLayout(size_hint=(1, 0.4))
@@ -32,8 +29,6 @@ class MainLayout(BoxLayout):
         self.add_widget(self.numberlayout)
 
     def update(self, dt):
-        self.popup.update()
-        
         self.mainbuttonslayout.update()
         self.otherbuttonslayout.update()
         self.numberlayout.update()
